@@ -9,7 +9,7 @@ export default function Home() {
 
   useEffect(() => {
     loadUsers();
-  });
+  },[]);
 
   const loadUsers = async () => {
     const result = await axios.get("http://localhost:8080/users");
@@ -44,7 +44,12 @@ export default function Home() {
                 <td>{user.username}</td>
                 <td>{user.email}</td>
                 <td>
-                  <button className="btn btn-primary mx-2">View</button>
+                  <Link
+                    className="btn btn-primary mx-2"
+                    to={`/viewuser/${user.id}`}
+                  >
+                    View
+                  </Link>
                   <Link
                     className="btn btn-outline-primary mx-2"
                     to={`/edituser/${user.id}`}
